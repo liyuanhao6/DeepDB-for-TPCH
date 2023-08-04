@@ -1,0 +1,132 @@
+2023-07-23 09:39:15,437 [INFO ]  maqp(evaluate_cardinalities: database_name=None, target_path=./baselines/cardinality_estimation/results/deepDB/imdb_light_model_based_budget_5.csv)
+2023-07-23 09:39:18,867 [DEBUG]  Including SPN with table_set {'lineitem', 'orders', 'customer'} with sampling ratio(2000000 / 6001194)
+2023-07-23 09:39:18,874 [DEBUG]  Including SPN with table_set {'nation', 'supplier', 'region'} with sampling ratio(10001 / 8044)
+2023-07-23 09:39:18,879 [DEBUG]  Including SPN with table_set {'nation', 'customer', 'region'} with sampling ratio(150001 / 120236)
+2023-07-23 09:39:18,885 [DEBUG]  Including SPN with table_set {'lineitem', 'orders', 'part'} with sampling ratio(2000000 / 6001178)
+2023-07-23 09:39:18,891 [DEBUG]  Including SPN with table_set {'lineitem', 'part'} with sampling ratio(6001215 / 6001183)
+2023-07-23 09:39:18,897 [DEBUG]  Including SPN with table_set {'nation', 'region'} with sampling ratio(26 / 21)
+2023-07-23 09:39:18,904 [DEBUG]  Including SPN with table_set {'lineitem', 'orders'} with sampling ratio(6001215 / 6001209)
+2023-07-23 09:39:18,910 [DEBUG]  Including SPN with table_set {'customer'} with sampling ratio(150000 / 149999)
+2023-07-23 09:39:18,917 [DEBUG]  Including SPN with table_set {'supplier'} with sampling ratio(10000 / 9999)
+2023-07-23 09:39:18,923 [DEBUG]  Including SPN with table_set {'partsupp'} with sampling ratio(800000 / 799999)
+2023-07-23 09:39:18,932 [DEBUG]  Predicting cardinality for query 0: SELECT COUNT(*) FROM lineitem WHERE l_shipdate <= 19980902
+2023-07-23 09:39:18,950 [INFO ]  Note: NumExpr detected 48 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2023-07-23 09:39:18,951 [INFO ]  NumExpr defaulting to 8 threads.
+2023-07-23 09:39:18,975 [DEBUG]  		Latency: 19.46ms
+2023-07-23 09:39:18,976 [DEBUG]  		True: 5916589
+2023-07-23 09:39:18,976 [DEBUG]  		Predicted: 5916559.451236625
+2023-07-23 09:39:18,976 [DEBUG]  Q-Error was: 1.0000049942476905
+2023-07-23 09:39:18,977 [DEBUG]  Predicting cardinality for query 1: select count(*) from part, supplier, partsupp, nation, region where p_partkey = ps_partkey and s_suppkey = ps_suppkey and p_size = 15 and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE'
+2023-07-23 09:39:18,994 [DEBUG]  		Latency: 5.02ms
+2023-07-23 09:39:18,994 [DEBUG]  		True: 3162
+2023-07-23 09:39:18,995 [DEBUG]  		Predicted: 2508.4787067510097
+2023-07-23 09:39:18,995 [DEBUG]  Q-Error was: 1.2605249514337848
+2023-07-23 09:39:18,995 [DEBUG]  Predicting cardinality for query 2: SELECT COUNT(*) FROM customer, orders, lineitem WHERE c_mktsegment = 'BUILDING' AND c_custkey = o_custkey AND l_orderkey = o_orderkey AND o_orderdate < 19950315 AND l_shipdate > 19950315
+2023-07-23 09:39:19,019 [DEBUG]  		Latency: 17.28ms
+2023-07-23 09:39:19,019 [DEBUG]  		True: 30519
+2023-07-23 09:39:19,020 [DEBUG]  		Predicted: 32991.27946605504
+2023-07-23 09:39:19,020 [DEBUG]  Q-Error was: 1.0810078792245827
+2023-07-23 09:39:19,020 [DEBUG]  Predicting cardinality for query 3: SELECT COUNT(*) FROM orders WHERE o_orderdate >= 19930701 AND o_orderdate < 19931001
+2023-07-23 09:39:19,036 [DEBUG]  		Latency: 12.04ms
+2023-07-23 09:39:19,036 [DEBUG]  		True: 57218
+2023-07-23 09:39:19,037 [DEBUG]  		Predicted: 57411.06684783901
+2023-07-23 09:39:19,037 [DEBUG]  Q-Error was: 1.0033742327211543
+2023-07-23 09:39:19,037 [DEBUG]  Predicting cardinality for query 4: SELECT COUNT(*) FROM customer, orders, lineitem, supplier, nation, region WHERE c_custkey = o_custkey AND l_orderkey = o_orderkey AND l_suppkey = s_suppkey AND c_nationkey = s_nationkey AND s_nationkey = n_nationkey AND n_regionkey = r_regionkey AND r_name = 'ASIA' AND o_orderdate >= 19940101 AND o_orderdate < 19950101
+2023-07-23 09:39:19,061 [DEBUG]  		Latency: 11.27ms
+2023-07-23 09:39:19,061 [DEBUG]  		True: 7243
+2023-07-23 09:39:19,062 [DEBUG]  		Predicted: 5758.93035884975
+2023-07-23 09:39:19,062 [DEBUG]  Q-Error was: 1.2576988344492968
+2023-07-23 09:39:19,062 [DEBUG]  Predicting cardinality for query 5: SELECT COUNT(*) FROM lineitem WHERE l_shipdate >= 19940101 AND l_shipdate < 19950101 AND l_discount >= 0.05 AND l_discount <= 0.07 AND l_quantity < 24.0
+2023-07-23 09:39:19,078 [DEBUG]  		Latency: 11.41ms
+2023-07-23 09:39:19,079 [DEBUG]  		True: 114160
+2023-07-23 09:39:19,079 [DEBUG]  		Predicted: 114082.92125162655
+2023-07-23 09:39:19,079 [DEBUG]  Q-Error was: 1.000675637926587
+2023-07-23 09:39:19,080 [DEBUG]  Predicting cardinality for query 6: SELECT COUNT(*) FROM supplier, lineitem, orders, customer, nation WHERE s_suppkey = l_suppkey AND o_orderkey = l_orderkey AND c_custkey = o_custkey AND s_nationkey = n_nationkey AND c_nationkey = n_nationkey AND n_name IN ('FRANCE', 'GERMANY') AND l_shipdate >= 19950101 AND l_shipdate <= 19961231
+2023-07-23 09:39:19,107 [DEBUG]  		Latency: 13.45ms
+2023-07-23 09:39:19,107 [DEBUG]  		True: 5799
+2023-07-23 09:39:19,107 [DEBUG]  		Predicted: 4583.766491684463
+2023-07-23 09:39:19,107 [DEBUG]  Q-Error was: 1.2651168008929174
+2023-07-23 09:39:19,108 [DEBUG]  Predicting cardinality for query 7: SELECT COUNT(*) FROM part, supplier, lineitem, orders, customer, nation, region WHERE p_partkey = l_partkey AND s_suppkey = l_suppkey AND l_orderkey = o_orderkey AND o_custkey = c_custkey AND c_nationkey = n_nationkey AND n_regionkey = r_regionkey AND s_nationkey = n_nationkey AND r_name = 'AMERICA' AND o_orderdate >= 19950101 AND o_orderdate <= 19961231 AND p_type = 'ECONOMY ANODIZED STEEL'
+2023-07-23 09:39:19,136 [DEBUG]  		Latency: 11.26ms
+2023-07-23 09:39:19,136 [DEBUG]  		True: 2603
+2023-07-23 09:39:19,137 [DEBUG]  		Predicted: 83.53265157450689
+2023-07-23 09:39:19,137 [DEBUG]  Q-Error was: 31.161467413473115
+2023-07-23 09:39:19,137 [DEBUG]  Predicting cardinality for query 8: select count(*) from part, supplier, lineitem, partsupp, orders, nation where s_suppkey = l_suppkey and ps_suppkey = l_suppkey and ps_partkey = l_partkey and p_partkey = l_partkey and o_orderkey = l_orderkey and s_nationkey = n_nationkey
+2023-07-23 09:39:19,155 [DEBUG]  		Latency: 4.06ms
+2023-07-23 09:39:19,155 [DEBUG]  		True: 601213
+2023-07-23 09:39:19,155 [DEBUG]  		Predicted: 75909.56449637582
+2023-07-23 09:39:19,155 [DEBUG]  Q-Error was: 7.920121844839512
+2023-07-23 09:39:19,156 [DEBUG]  Predicting cardinality for query 9: SELECT COUNT(*) FROM customer, orders, lineitem, nation WHERE c_custkey = o_custkey AND l_orderkey = o_orderkey AND o_orderdate >= 19931001 AND o_orderdate < 19940101 AND l_returnflag = 'R' AND c_nationkey = n_nationkey
+2023-07-23 09:39:19,181 [DEBUG]  		Latency: 12.10ms
+2023-07-23 09:39:19,181 [DEBUG]  		True: 114705
+2023-07-23 09:39:19,181 [DEBUG]  		Predicted: 112603.62235961779
+2023-07-23 09:39:19,181 [DEBUG]  Q-Error was: 1.0186617232762827
+2023-07-23 09:39:19,182 [DEBUG]  Predicting cardinality for query 10: SELECT COUNT(*) FROM partsupp, supplier, nation WHERE ps_suppkey = s_suppkey AND s_nationkey = n_nationkey AND n_name = 'GERMANY'
+2023-07-23 09:39:19,195 [DEBUG]  		Latency: 5.65ms
+2023-07-23 09:39:19,196 [DEBUG]  		True: 31680
+2023-07-23 09:39:19,196 [DEBUG]  		Predicted: 25478.11457189616
+2023-07-23 09:39:19,196 [DEBUG]  Q-Error was: 1.2434201090745105
+2023-07-23 09:39:19,197 [DEBUG]  Predicting cardinality for query 11: SELECT COUNT(*) FROM orders, lineitem WHERE o_orderkey = l_orderkey AND l_shipmode IN ('MAIL', 'SHIP') AND l_receiptdate >= 19940101 AND l_receiptdate < 19950101
+2023-07-23 09:39:19,215 [DEBUG]  		Latency: 7.01ms
+2023-07-23 09:39:19,215 [DEBUG]  		True: 30988
+2023-07-23 09:39:19,215 [DEBUG]  		Predicted: 260077.0846176869
+2023-07-23 09:39:19,215 [DEBUG]  Q-Error was: 8.392832213040109
+2023-07-23 09:39:19,215 [DEBUG]  Predicting cardinality for query 12: SELECT COUNT(*) FROM customer, orders WHERE c_custkey = o_custkey
+2023-07-23 09:39:19,221 [DEBUG]  		Latency: 2.24ms
+2023-07-23 09:39:19,221 [DEBUG]  		True: 1500000
+2023-07-23 09:39:19,222 [DEBUG]  		Predicted: 1491455.0321564353
+2023-07-23 09:39:19,222 [DEBUG]  Q-Error was: 1.0057292829212623
+2023-07-23 09:39:19,222 [DEBUG]  Predicting cardinality for query 13: SELECT COUNT(*) FROM lineitem, part WHERE l_partkey = p_partkey AND l_shipdate >= 19950901 AND l_shipdate < 19951001
+2023-07-23 09:39:19,233 [DEBUG]  		Latency: 6.53ms
+2023-07-23 09:39:19,233 [DEBUG]  		True: 75983
+2023-07-23 09:39:19,233 [DEBUG]  		Predicted: 75982.59483937838
+2023-07-23 09:39:19,234 [DEBUG]  Q-Error was: 1.0000053322819848
+2023-07-23 09:39:19,234 [DEBUG]  Predicting cardinality for query 14: SELECT COUNT(*) FROM supplier, lineitem WHERE s_suppkey = l_suppkey AND l_shipdate >= 19960101 AND l_shipdate < 19960401
+2023-07-23 09:39:19,251 [DEBUG]  		Latency: 8.60ms
+2023-07-23 09:39:19,251 [DEBUG]  		True: 225954
+2023-07-23 09:39:19,251 [DEBUG]  		Predicted: 225952.79515598074
+2023-07-23 09:39:19,251 [DEBUG]  Q-Error was: 1.0000053322819857
+2023-07-23 09:39:19,252 [DEBUG]  Predicting cardinality for query 15: SELECT COUNT(*) FROM partsupp, part WHERE p_partkey = ps_partkey AND p_size IN (49, 14, 23, 45, 19, 3, 36, 9)
+2023-07-23 09:39:19,262 [DEBUG]  		Latency: 2.81ms
+2023-07-23 09:39:19,263 [DEBUG]  		True: 127304
+2023-07-23 09:39:19,263 [DEBUG]  		Predicted: 752119.1512150165
+2023-07-23 09:39:19,263 [DEBUG]  Q-Error was: 5.908055922948348
+2023-07-23 09:39:19,264 [DEBUG]  Predicting cardinality for query 16: SELECT COUNT(*) FROM lineitem, part WHERE p_partkey = l_partkey AND p_brand = 'Brand#23' AND p_container = 'MED BOX'
+2023-07-23 09:39:19,276 [DEBUG]  		Latency: 3.79ms
+2023-07-23 09:39:19,276 [DEBUG]  		True: 6088
+2023-07-23 09:39:19,277 [DEBUG]  		Predicted: 5957.047737742426
+2023-07-23 09:39:19,277 [DEBUG]  Q-Error was: 1.021982745148724
+2023-07-23 09:39:19,277 [DEBUG]  Predicting cardinality for query 17: SELECT COUNT(*) FROM customer, orders, lineitem WHERE c_custkey = o_custkey AND o_orderkey = l_orderkey
+2023-07-23 09:39:19,286 [DEBUG]  		Latency: 3.57ms
+2023-07-23 09:39:19,286 [DEBUG]  		True: 6001213
+2023-07-23 09:39:19,286 [DEBUG]  		Predicted: 5947025.956396371
+2023-07-23 09:39:19,287 [DEBUG]  Q-Error was: 1.0091116204975275
+2023-07-23 09:39:19,287 [DEBUG]  Predicting cardinality for query 18: SELECT COUNT(*) FROM lineitem, part WHERE p_partkey = l_partkey AND p_brand = 'Brand#12' AND p_container IN ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG') AND l_quantity >= 1 AND l_quantity <= 11 AND p_size >= 1 AND p_size <= 5 AND l_shipmode IN ('AIR', 'AIR REG') AND l_shipinstruct = 'DELIVER IN PERSON'
+2023-07-23 09:39:19,311 [DEBUG]  		Latency: 9.17ms
+2023-07-23 09:39:19,311 [DEBUG]  		True: 25
+2023-07-23 09:39:19,311 [DEBUG]  		Predicted: 19.419589869694384
+2023-07-23 09:39:19,312 [DEBUG]  Q-Error was: 1.2873598344635606
+2023-07-23 09:39:19,312 [DEBUG]  Predicting cardinality for query 19: SELECT COUNT(*) FROM supplier, nation WHERE s_nationkey = n_nationkey AND n_name = 'CANADA'
+2023-07-23 09:39:19,326 [DEBUG]  		Latency: 6.46ms
+2023-07-23 09:39:19,326 [DEBUG]  		True: 412
+2023-07-23 09:39:19,327 [DEBUG]  		Predicted: 331.34602802224776
+2023-07-23 09:39:19,327 [DEBUG]  Q-Error was: 1.2434131245186886
+2023-07-23 09:39:19,327 [DEBUG]  Predicting cardinality for query 20: SELECT COUNT(*) FROM supplier, lineitem, orders, nation WHERE s_suppkey = l_suppkey AND o_orderkey = l_orderkey AND o_orderstatus = 'F' AND s_nationkey = n_nationkey AND n_name = 'SAUDI ARABIA'
+2023-07-23 09:39:19,339 [DEBUG]  		Latency: 2.11ms
+2023-07-23 09:39:19,339 [DEBUG]  		True: 119924
+2023-07-23 09:39:19,340 [DEBUG]  		Predicted: 917611.1052465194
+2023-07-23 09:39:19,340 [DEBUG]  Q-Error was: 7.651605227031449
+2023-07-23 09:39:19,340 [DEBUG]  Predicting cardinality for query 21: SELECT COUNT(*) FROM customer WHERE c_acctbal > 0.00
+2023-07-23 09:39:19,348 [DEBUG]  		Latency: 2.19ms
+2023-07-23 09:39:19,348 [DEBUG]  		True: 136308
+2023-07-23 09:39:19,348 [DEBUG]  		Predicted: 136306.09128666698
+2023-07-23 09:39:19,348 [DEBUG]  Q-Error was: 1.0000140031403952
+2023-07-23 09:39:19,349 [INFO ]  [ 1.24342011  1.25769883  1.26052495  1.2651168   1.28735983  5.90805592
+  7.65160523  7.92012184  8.39283221 31.16146741]
+2023-07-23 09:39:19,350 [INFO ]  Q-Error 50%-Percentile: 1.1622105018716358 (vs. MCSN: 3.82 and IBJS: 1.59)
+2023-07-23 09:39:19,351 [INFO ]  Q-Error 90%-Percentile: 7.893270183058706 (vs. MCSN: 78.4 and IBJS: 150)
+2023-07-23 09:39:19,351 [INFO ]  Q-Error 95%-Percentile: 8.369196694630078 (vs. MCSN: 362 and IBJS: 3198)
+2023-07-23 09:39:19,352 [INFO ]  Q-Error 99%-Percentile: 26.380054021382165 (vs. MCSN: 927 and IBJS: 14309)
+2023-07-23 09:39:19,353 [INFO ]  Q-Mean wo inf 3.6241904118106123 (vs. MCSN: 57.9 and IBJS: 590)
+2023-07-23 09:39:19,353 [INFO ]  Latency avg: 8.07ms
+2023-07-23 09:39:19,354 [INFO ]  Saving results to ./baselines/cardinality_estimation/results/deepDB/imdb_light_model_based_budget_5.csv
