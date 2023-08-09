@@ -558,8 +558,6 @@ def q12(ord, li):
 
     mail = "MAIL"
     ship = "SHIP"
-    urgent = "1-URGENT"
-    high = "2-HIGH"
 
     li_indexed = li.sum(lambda p:
             {
@@ -584,12 +582,7 @@ def q12(ord, li):
             indexedDictValue.sum(lambda p:
                 {
                     record({"l_shipmode": p[0]}):
-                    record(
-                            {
-                                "high_line_count": p[1] if (probeDictKey.o_orderpriority == urgent) or (probeDictKey.o_orderpriority == high) else 0,
-                                "low_line_count": p[1] if (probeDictKey.o_orderpriority != urgent) and (probeDictKey.o_orderpriority != high) else 0,
-                            }
-                    )
+                    1
                 }
         )
     )
@@ -597,8 +590,7 @@ def q12(ord, li):
     results = ord_probed.sum(lambda p:
             unique(record({
                     "l_shipmode": p[0].l_shipmode,
-                    "high_line_count": p[1].high_line_count,
-                    "low_line_count": p[1].low_line_count
+                    "line_count": p[1]
             })):
             True
         )
